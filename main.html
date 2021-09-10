@@ -1,0 +1,475 @@
+<html lang="en-US">
+    <head>
+      <meta charset="UTF-8">
+      <title>Pdf Quotes Template 1</title>
+      <script type="text/javascript" src="./dist/jspdf.min.js"></script>
+      <script type="text/javascript" src="./dist/html2pdf.bundle.min.js"></script>
+      <!-- <link rel="canonical" href="https://ekoopmans.github.io/html2pdf.js/" /> -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="theme-color" content="#157878">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+      <style>
+        /* Page margins are defined using CSS */
+        @page {
+          margin: 1cm;
+          margin-top:2.5cm;
+          margin-bottom: 2.5cm;
+    
+        /* Header frame starts within margin-top of @page */
+          @frame header {
+          -pdf-frame-content: headerContent; /* headerContent is the #id of the element */
+          top: 1cm;
+          margin-left: 1cm;
+          margin-right:1cm;
+          height:1cm;
+          }
+    
+        /* Footer frame starts outside margin-bottom of @page */
+          @frame footer {
+            -pdf-frame-content: footerContent;
+            bottom: 2cm;
+            margin-left: 1cm;
+            margin-right: 1cm;
+            height: 1cm;
+          }
+        }
+
+
+
+        p {padding-bottom:10px;}
+        span{padding-left:0.1rem;padding-right:0.9rem;}
+        .right span{padding:0px;}
+        td {text-align: left; vertical-align: top;}
+        div{float:left;}
+        div.right
+        {
+          float:right;
+        }
+        div#container {
+            font: normal 12px Arial, Helvetica, Sans-serif;
+            background: white;
+            padding: 15px;
+            width:768px;
+            margin:0 auto;
+        }
+        table{width:100%;}
+
+       
+        img.company-logo {
+            width: 250px;
+            height: 52px;
+        }
+        .title
+        {
+          text-align: center;
+        }
+
+        .notes-p
+        {
+          padding:11px;
+        }
+        .payment-term-header
+        {
+          text-align: left;
+          font-weight: 600;
+          font-size: 1.2rem;
+          padding-bottom:0.6rem;
+          padding-top:15px;;
+          padding-left:0.5rem;
+          border-top: solid 2px #333;
+        }
+
+        .content-header
+        {
+          text-align: left;
+          font-weight: bold;
+          font-size: 1.3rem;
+          padding-top:1.6rem;
+          padding-left:0.5rem;
+          border-bottom: solid 2px #333;
+        }
+        .content-row-header
+        {
+          text-align: left;
+          padding-top:0.6rem;
+          padding-left:0.2rem;
+          border-bottom: solid 2px #333;
+        }
+        .content-header td{
+          font-weight: 600;
+          font-size: 1.1rem;
+        }
+        
+        .total-header
+        {
+          text-align: left;
+          font-size: 1.1rem;
+        }
+        .total-header div.right
+        {
+          font-weight:300;
+        }
+        td.total-header
+        {
+          padding-left:0.6rem;
+          font-weight:600;
+        }
+
+        .invoice_information-td{
+          border: solid 1px #333;
+          height:100px;
+          width:50%;
+          vertical-align: top;
+        }
+      .content-row-data td{
+        vertical-align: top;
+        padding-top:1rem;
+        font-size: 0.9rem;
+        font-weight:600;
+      }
+      .content-row-data td img{
+        width:180px;
+        height:100px;
+      }
+      .content-row-data td table td{
+        padding-top:0;
+      }
+      .address-summery td{
+        padding-left:30px;
+      }
+      </style>
+    </head>
+    
+<body >
+  /* <div id="headerContent">I'm a header!</div>
+  <div id="footerContent">I'm a footer! <pdf:pagenumber></div> */
+  <div id="container">
+    <table class="page html2pdf__page-break" cellspacing=0 cellpadding=0>
+      <tr><td class="title">
+        <img class="company-logo" src="<?php echo $logo_base64; ?>" width="146px" height="32px" style="margin: 0 auto;">    
+      </td></tr>
+
+      <tr><td class="content-header">
+        Retail Quotation Reference: KGG58150/REV07
+      </td></tr>
+      <tr><td><div style="width:100%;height:10px;"></div></td></tr>
+      <tr><td>
+          <table style="padding-bottom: 10px;"><tr><td>
+            <div>Designer: <span id='invoice_designer'>Gaya Giacometti</span></div> 
+            <div>Phone: <span id='invoice_phone'>0207 368 7608 </span></div>
+            <div>Email: <span id='invoice_email'> gaya@poliformuk.com</span></div>
+            <div class="right" id='invoice_date'>Date:  <span> 29/07/2021</span></div>
+              </tr>
+            </table>
+      </td></tr>
+
+      <tr><td class="invoice_information">
+        <table>
+          <tr><td class="invoice_information-td">
+              <table>
+                <tr><td>Client </td><td>Inhouse Interior Design</td></tr>
+                <tr><td>Address </td><td>Fairfield House<br>London<br>SK9 5NG</td></tr>
+                <tr><td>Phone: </td><td>tbc</td></tr>
+                <tr><td>Email: </td><td>Inhouseinteriordesign.co.uk</td></tr>
+              </table></td><td class="invoice_information-td">
+              <table>
+                <tr><td>Delivery </td><td>Inhouse Interior Design</td></tr>
+                <tr><td>Address </td><td>Aston House<br>
+                                      Macclesfield Road<br>
+                                      Prestbury<br>
+                                      Cheshire<br>
+                                      SK10 4BH</td></tr>
+                <tr><td>Phone: </td><td></td></tr>
+                <tr><td>Site Contact: </td><td></td></tr>
+              </table>
+        </td></tr></table>
+        </td></tr>
+
+      <tr><td class="content-row-header">
+          <table><tr>
+            <td style="width:70%; text-align: left;">LOUNGE </td>
+            <td style="width:6%; text-align:center;">QTY.</td>
+            <td style="width:12%; text-align:center;">UNIT PRICE</td>
+            <td style="width:12%; text-align:center;">TOTAL</td>
+          </tr></table>
+        </td></tr>
+      <tr><td class="content-row-data">
+          <table><tr>
+            <td style="width:70%; text-align: left;">
+              <table><tr><td>BEDI225T : BELLPORT SOFA <BR>W/ARMRESTS - DIMS W2250,D 1010,H400/670/800(BEDI225T)-BREST-12 SABBIA-CAT G-TYPE OF MATERIAL:FIREPROOF; FEET Finish:MAT BROWN NICKL;ANTI-STAIN TREATMENTLNO w2250x d:1010x h:800
+              <td><img src="<?php echo $img_base64; ?>"></td>
+              </td></tr></table></td>
+            <td style="width:6%; text-align:center;">2.00</td>
+            <td style="width:12%; text-align:center;">£8,041.60</td>
+            <td style="width:12%; text-align:center;">£16,083.20</td>
+          </tr></table>
+        </td></tr>
+        <tr><td class="content-row-data">
+          <table><tr>
+            <td style="width:70%; text-align: left;">
+              <table><tr><td>BEDI225T : BELLPORT SOFA <BR>W/ARMRESTS - DIMS W2250,D 1010,H400/670/800(BEDI225T)-BREST-12 SABBIA-CAT G-TYPE OF MATERIAL:FIREPROOF; FEET Finish:MAT BROWN NICKL;ANTI-STAIN TREATMENTLNO w2250x d:1010x h:800
+              <td><img src="<?php echo $img_base64; ?>"></td>
+              </td></tr></table></td>
+            <td style="width:6%; text-align:center;">2.00</td>
+            <td style="width:12%; text-align:center;">£8,041.60</td>
+            <td style="width:12%; text-align:center;">£16,083.20</td>
+          </tr></table>
+        </td></tr>
+        <tr><td class="content-row-data">
+          <table><tr>
+            <td style="width:70%; text-align: left;">
+              <table><tr><td>BEDI225T : BELLPORT SOFA <BR>W/ARMRESTS - DIMS W2250,D 1010,H400/670/800(BEDI225T)-BREST-12 SABBIA-CAT G-TYPE OF MATERIAL:FIREPROOF; FEET Finish:MAT BROWN NICKL;ANTI-STAIN TREATMENTLNO w2250x d:1010x h:800
+              <td><img src="<?php echo $img_base64; ?>"></td>
+              </td></tr></table></td>
+            <td style="width:6%; text-align:center;">2.00</td>
+            <td style="width:12%; text-align:center;">£8,041.60</td>
+            <td style="width:12%; text-align:center;">£16,083.20</td>
+          </tr></table>
+        </td></tr>
+        <tr><td class="content-row-data">
+          <table><tr>
+            <td style="width:70%; text-align: left;">
+              <table><tr><td>BEDI225T : BELLPORT SOFA <BR>W/ARMRESTS - DIMS W2250,D 1010,H400/670/800(BEDI225T)-BREST-12 SABBIA-CAT G-TYPE OF MATERIAL:FIREPROOF; FEET Finish:MAT BROWN NICKL;ANTI-STAIN TREATMENTLNO w2250x d:1010x h:800
+              <td><img src="<?php echo $img_base64; ?>"></td>
+              </td></tr></table></td>
+            <td style="width:6%; text-align:center;">2.00</td>
+            <td style="width:12%; text-align:center;">£8,041.60</td>
+            <td style="width:12%; text-align:center;">£16,083.20</td>
+          </tr></table>
+        </td></tr>
+        <tr><td class="content-row-data">
+          <div style="height:80px;">&nbsp;</div>
+        </td></tr>
+
+        <tr><td class="content-header">
+          INSTALLATION
+        </td></tr>
+        <tr><td><div style="width:100%;height:10px;"></div></td></tr>
+
+        <tr><td class="content-row-data">
+          <table><tr>
+            <td style="width:60%; text-align: left;">
+              DELIVERY AND INSTALLATION:
+              </td>
+            <td style="width:8%; text-align:center;">1.00</td>
+            <td style="width:16%; text-align:center;">£680.00</td>
+            <td style="width:16%; text-align:center;">£680.00</td>
+          </tr></table>
+        </td></tr>
+
+        <tr><td class="content-row-data">
+          <div style="height:80px;">&nbsp;</div>
+        </td></tr>
+
+        <?php require("address-footer.html") ?>
+        
+        <tr><td class="content-row-data">
+          <div style="height:80px;">&nbsp;</div>
+        </td></tr>
+        <tr><td class="content-header">
+          TOTAL
+        </td></tr>  
+        <tr><td class="content-row-data">
+          <div style="height:80px;">&nbsp;</div>
+        </td></tr>
+        <tr><td class="total-header">
+          Subtotal
+          <div class="right">£53,637.44</div>
+        </td></tr>  
+        <tr><td class="total-header">
+          VAT 20%
+          <div class="right">£10,727.49</div>
+        </td></tr>        
+        <tr><td class="total-header">
+          Overall Total E & O E
+          <div class="right"><b>£64,364.93</b></div>
+        </td></tr>     
+
+
+        <tr><td class="content-row-data">
+          <div style="height:15px;">&nbsp;</div>
+        </td></tr>
+        <tr><td class="payment-term-header">
+          Payment Terms
+          <div class="right"><b></b></div>
+        </td></tr>     
+        <tr><td>
+          <div class="left" style="padding-left:11px;">30%</div>
+          <div class="left" style="margin-left:2rem;">Deposit Payment prior to Order</div>
+          <div class="right">£19,309.48</div>
+        </td></tr>     
+        <tr><td>
+          <div class="left" style="padding-left:11px;">50%</div>
+          <div class="left" style="margin-left:2rem;">Payment due on Arrival of Goods in the UK</div>
+          <div class="right">£32,182.46</div>
+        </td></tr>     
+        <tr><td>
+          <div class="left" style="padding-left:11px;">20%</div>
+          <div class="left" style="margin-left:2rem;">Balance due prior to Delivery & Installation</div>
+          <div class="right">£12,872.99</div>
+        </td></tr>     
+
+
+        <tr><td class="notes-p">
+          <p>Delivery Times: Complements - 8 weeks (basic finishes: no glossy, no polyester), Sofa / Upholstery - 11 weeks,
+            Wardrobes - 12 weeks (no veneer, hide / leather etc. For these please remember that for some type of doors,
+            like Plus, Madison etc., we have a longer fixed lead time)</p>
+        </td></tr>
+        
+        <tr><td class="notes-p">
+          <p>Storage Charges: Poliform offer 1 week free storage from when the goods arrive in the UK, after this date storage
+            cost will be charged depending on the volume at £16.80 inc VAT per cubic metre per week.</p>
+        </td></tr>
+
+        <tr><td class="notes-p">
+          <p>Terms & Conditions: All quotations and orders are subject to our Terms & Conditions of Sale and are valid for 28 days only.</p>
+        </td></tr>
+
+        <tr><td class="notes-p">
+          <table><tr><td style="width:260px;">
+            <b>PAYMENT METHODS:</b>
+          </td><td>
+            We have listed below the different ways that you can pay your invoice.
+          </td></tr></table>
+        </td></tr>
+
+        <tr><td class="notes-p">
+          <table><tr><td style="width:260px;">
+            <b>BANK TRANSFER:</b>
+          </td><td>
+            You can pay by BACS direct to our bank account. Our bank details also shows on the top right corner of our invoice:<br>
+            Poliform UK Ltd<br>
+            Natwest - Chelsea Branch<br>
+            Sort Code: 60-05-14<br>
+            Account No. 32169639<br>
+            IBAN No. GB69NWBK60051432169639<br>
+            SWIFT No. NWBKGB2L<br>
+            Please quote our Job Reference or Invoice No.
+          </td></tr></table>
+        </td></tr>
+
+        <tr><td class="notes-p">
+          <table><tr><td style="width:260px;">
+            <b>DEBIT CARD / CREDIT CARD:</b>
+          </td><td>
+            We accept all major debit and credit cards i.e. Visa Debit, Visa Credit, Mastercard and Amex via Chip and PIN.
+          </td></tr></table>
+        </td></tr>
+
+        <tr><td class="notes-p">
+          <table><tr><td style="width:260px;">
+            <b>AMEX CARD:</b>
+          </td><td>
+            <p>For telephone transactions, should you wish to pay by AMEX card we require you to be present
+              in the showroom. This is if you are paying for the FIRST TIME we need to verify your PIN for
+              security to avoid fraudulent transactions. Afterwards, you can use the same card over the
+              phone for future payments. This process is to protect you and is a recommendation from Amex.</p>
+              <p>Please note, 3% surcharge will be incurred on Corporate / Company cards only.</p>
+              <p>Under GDPR ruling, we do not keep your bank or credit card details on file.</p>
+            </td></tr></table>
+        </td></tr>
+
+        <?php require("address-footer.html") ?>
+
+        <tr><td class="content-row-data">
+          <div style="height:200px;">&nbsp;</div>
+        </td></tr>
+
+
+        <tr><td>
+          <h2>Introduction</h2>
+              This is asummary of the terms and conditions ("Conditions") on which Poliform UK Limited (company number 04216083)
+              ("We/Our/Us") supply goods ("Goods") and/or design services ("Space Planning Services") and/or provide fitting services ("Fitting
+              Services") to you. These Conditions are in addition to Our full terms and conditions ("Full Terms") which can be found here:
+              <http://www.p oliformuk.com/consumertcs.pdf> if you are acting as a consumer; or here: <http://www.p oliformuk.com/businesstcs.p df>
+              if you are acting in the course of your business. If you are a consumer your attention is drawn to Clauses 8 and 12.4 of the Full
+              Terms. The Conditions together with the Full Terms that are applicable to you form the entire agreement between you and Us ("Entire
+              Agreement"). The Entire Agreement will become binding when We issue y ou with a written acceptance of y our order.
+              Price and payment
+              The price of the Goods and/or Space Planning Services will be set out in Our price list in force when We confirm y our order. 50% of the
+              price is due on the date of your order unless the price is £2,000 or less. The remaining 50% will be due on arrival of the Goods in the UK.
+              Where the price of the Goods is £2,000 or less, you must make pay ment for 100% of the price on the date of your order. Goods will not
+              be delivered until pay ment is received in full. If fitting is required, please request a quotation. Our prices may change at any time, but
+              price changes will normally not affect orders that We have confirmed with you. There are certain circumstances when we may increase th:
+              price of the goods and/or Space Planning Services after we have confirmed y our order. If you are a consumer these are set out in Paragrap|!
+              12.4 of the Full Terms, and if you are a business these are set out in Paragraph 10.5 of the Full Terms. If you do not make any pay ment
+              on time, We may charge interest to you on the overdue amount at the rate of 4% a year above the base lending rate of Natwest Bank ple
+              from time to time. Our prices include VAT. However, if the rate of VAT changes, unless you have already paid in full, We will adjust the
+              rate of VAT to reflect the new standard rates.
+              Please note that if we provide Our Space Planning Services to you and you subsequently cancel your Order (if you are entitled to
+              cancellation as per the applicable Full Terms) or decide not to place an Order for Goods, We will be entitled to charge you 20% of the
+              price quoted by Us for the Goods as a compensation for services already provided by Us.
+              Changes to order or terms
+              You may request a change to your order at any time before We order the Goods and/or provide the Space Planning or Fitting Services by
+              contacting Us. In the case of made-to-measure Goods, We will notify you in writing where there 1s a change in the total price. If We are
+              unable to supply you with the Goods, Space Planning Services or Fitting Services, We will inform y ou of this in writing and We will not
+              process the order. No changes can be made to the order for made-to-measure Goods once confirmed into production. Should an
+              order be cancelled and production has started we will have to charge you the full price of the made-to-measure Goods. If you are
+              a consumer please see our full consumer terms and conditions for more detail about your cancellation rights.
+              Delivery of Goods
+              We will contact you to arrange a suitable delivery date. Timescales for delivery and delivery charges will vary depending on the
+              availability of the Goods and your address. In order to postpone an agreed delivery date, We require a minimum of 3 weeks' notice in
+              writing. Cancellation or postponement of a delivery may be subject to a charge. Responsibility for the Goods passes to you when We
+              deliver the Goods. You will only own title to the Goods once We have received pay ment for the Goods from y ou in full.
+              Storage
+              Goods will be stored free of charge for one week. After this time, you will be charged for the storage of the Goods at Our
+              standard storage rates and delivery will not take place until Our storage charges have been paid in full.
+              Preparing for delivery
+              You must follow our preparation guidelines available here: <http ://p oliformuk.com/fittingnotes.pdf>. It is your responsibility to ensure
+              We have adequate access to the delivery address. If We are unable to deliver the Goods due to a lack of access, you will be charged any
+              extra storage and delivery fees as applicable.
+              Intellectual Property Rights
+              If you use the Space Planning Services, We will not provide you with Space Planning drawings until We have either received an order or
+              until you have paid for the Space Planning Services in full, whichever is the earliest. We will own the copyright, design right and all other
+              intellectual property rights in the Goods and any drafts, drawings or illustrations We make in connection with the Space Planning Services
+              for you.
+              Warranty
+              We guarantee that on delivery and for a period of 24 months from delivery, the Goods shall be free from material defects. For full details
+              please refer to the Full Terms. Notwithstanding our guarantee to you, there will be a £150 plus VAT call out charge, plus expenses and
+              any costs of repair or replacement for repairing certain types of defect or any material defects reported after the date falling 24 months
+              after the date of delivery. Unfortunately , We cannot accept the return of made-to-measure Goods if you have provided Us with incorrect
+              measurements. If you are a consumer, this will not affect your rights in relation to Goods that are faulty or not as described or to Services
+        </td></tr>
+        <tr><td>
+          Cancellation
+
+          You may cancel any order, at any time before the Goods have been put into production by contacting Us. We will confirm y our
+          cancellation in writing. If you have made any pay ment in advance for Goods, Fitting and/or Space Planning Services that have not
+          been delivered/provided, We will refund these amounts, less 10% of the order value to cover design and administrative costs. You
+          will not be able to cancel an order for made to measure Goods which are already in production. All cancellation requests should be
+          sent to Us in writing and will only be granted on condition that all costs and expenses incurred by Us up to the date of cancellation
+          will be paid by you. If you are a consumer and We increase the price of the Goods and/or the Space Planning Services after We have
+          confirmed y our order under Clause 12.4 of the Full Terms, you may either accept the proposed increase in the price, or cancel the
+          order and receive a refund of any payments made to Us. These cancellation rights will not affect y our cancellation rights as a
+          consumer in relation to non-made-to-measure Goods that were purchased off-premises. Advice is available from y our local
+          Citizens' Advice Bureau or Trading Standards office.
+
+          Jurisdiction
+
+          The Entire Agreement is governed by English law and subject to the non-exclusive jurisdiction of the English courts.
+
+          ClilentName:           Signatures:             Date: 
+        </td></tr>
+      </table>
+    </div>
+</body>
+
+<script>
+  var doc = new jsPDF("p", "mm", "a4");
+
+  var width = doc.internal.pageSize.getWidth();
+  var height = doc.internal.pageSize.getHeight();
+ 
+  var element = document.getElementById('container');
+  var worker = html2pdf(); 
+
+  var opt = {
+    margin:       1,
+    filename:     'invoice-quotes.pdf',
+    image:        { type: 'jpeg', quality: 1.0 },
+    html2canvas:  { scale: 1 },
+    jsPDF:        { unit: 'mm', format: 'letter', orientation: 'portrait' }
+  };
+  var worker = html2pdf().set(opt).from(element).save();
+
+</script>
